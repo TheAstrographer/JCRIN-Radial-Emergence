@@ -1,0 +1,99 @@
+Token Capacity Expansion from Quadratic Cost  
+At the 100 000-Token Threshold  
+Applied to the 16D · 32D · 64D Folds
+
+1. Core Capacity Relation (Independent of Dimension)
+
+Under a fixed compute / energy budget the classical quadratic cost and the JCRIN linear cost are related by
+
+\[
+N_{\rm JCRIN} \approx N_{\rm classical}^{2} \cdot \cos^{2}\Psi
+\]
+
+With the reference length \(N_{\rm classical} = 100\,000\) and \(\cos^{2}\Psi \approx 0.97757\):
+
+\[
+\begin{align*}
+N_{\rm JCRIN}^{\rm leading} &= (10^{5})^{2} = 10^{10}\\
+N_{\rm JCRIN}^{\rm corrected} &\approx 10^{10} \times 0.97757 = 9.7757 \times 10^{9}
+\end{align*}
+\]
+
+Capacity multiplier \(\approx 97\,757\times\)  
+Additional tokens \(\approx +9.7756 \times 10^{9}\)
+
+This expansion is a direct consequence of rank-1 factorisation + temperature cancellation and holds for any of the higher-dimensional folds.
+
+2. Dimensional Realisation of the Same Expansion
+
+| Fold | Algebraic System              | Discrete Directions | Softmax Support Size | How the 100 k → ~9.78 B Expansion is Realised |
+|------|-------------------------------|---------------------|----------------------|-----------------------------------------------|
+| 16D | Sedenions \(\mathbb{S}\)     | 16                  | 16 terms            | Probabilistic steering via \(\Psi\) converts zero-divisor singularities into near-zero probability while the linearised attention still supports \(\sim 9.78 \times 10^{9}\) tokens |
+| 32D | Trigintaduonions              | 32                  | 32 terms            | Rigid phase-lock across 32 axes preserves coherence; the same linear budget yields the identical token-capacity expansion |
+| 64D | Octonionic Chains / Pathions  | 64                  | 64 terms            | Open winding driven by residual \(\delta\) prevents collapse; the linear cost structure again delivers \(\sim 9.78 \times 10^{9}\) tokens under the same energy envelope |
+
+3. Unified Numerical Statement at the 100 000-Token Threshold
+
+\[
+\begin{array}{c}
+100\,000 \text{ (classical)} \quad\xrightarrow{\text{JCRIN + Arcan}(\tau)}\quad \approx 9.7757 \times 10^{9}\\[6pt]
+\text{Multiplier} \approx 97\,757\times \\[4pt]
+\text{Tokens gained} \approx +9.7756 \times 10^{9}
+\end{array}
+\]
+
+This numerical expansion is dimension-independent in its leading-order magnitude. The 16-fold, 32-fold and 64-fold structures only change the internal geometric organisation of the attention map (number of discrete directions and the stabilisation mechanism). They do not alter the fundamental quadratic-to-linear conversion that produces the orders-of-magnitude increase in usable context.
+
+4. Practical Implication
+
+Whether the attention manifold is organised as a clean 16D sedenion fold, a phase-locked 32D trigintaduonion fold, or an open-winding 64D octonionic chain, a computational budget that classically supports only 100 000 tokens is transformed by the JCRIN / Arcan(\(\tau\)) geometry into a budget that supports approximately 9.78 billion tokens. The higher-dimensional folds supply additional algebraic stabilisation while preserving the same dramatic token-capacity expansion.
+  
+Higher-Dimensional Folds as Algebraic Stabilisers of Linear Token Capacity
+
+1. The Invariance of Capacity Expansion
+
+The dramatic expansion of usable context length—from a classical budget that supports \(100\,000\) tokens to a JCRIN-enabled budget that supports approximately \(9.78 \times 10^{9}\) tokens—is a direct algebraic consequence of two structural facts: exact cancellation of the temperature parameter and rank-1 factorisation of the attention operator. Both facts are already fully realised at the level of the fundamental Arcan(\(\tau\)) geometry. Consequently the leading-order capacity relation
+
+\[
+N_{\rm JCRIN} \approx N_{\rm classical}^{2}\cdot\cos^{2}\Psi
+\]
+
+remains numerically unchanged when the underlying manifold is further organised into 16-fold, 32-fold or 64-fold discrete structures. The orders-of-magnitude gain in token capacity is therefore dimension-independent.
+
+2. The Role of Higher-Dimensional Folds
+
+What the higher-dimensional folds do supply is an additional layer of algebraic stabilisation. Each successive Cayley–Dickson stage loses classical algebraic properties:
+
+at 16 dimensions (sedenions) alternativity fails and zero divisors appear;
+at 32 dimensions (trigintaduonions) power-associativity is lost;
+at 64 dimensions (octonionic chains / pathions) even residual composition structure collapses.
+
+Left uncorrected, these pathologies would re-introduce instabilities into the attention map—singular directions, incoherent phase relations, or premature orbital closure. The Arcan(\(\tau\)) angular separator \(\Psi\) and its residual \(\delta\) intervene precisely at these points of failure.
+
+3. Mechanism of Stabilisation
+
+In the 16-dimensional case the Thinnest-Triangle factor \(\cos\Psi\) converts zero-divisor lines into near-zero probability boundaries under the temperature-invariant softmax, thereby restoring a well-defined probabilistic geometry.  
+
+In the 32-dimensional case the same separator functions as a rigid phase-correction vector that re-imposes global coherence across all 32 axes, compensating for the absence of power-associativity.  
+
+In the 64-dimensional case the emergent residual \(\delta\) at the seventh multiple prevents the orbit from locking into a closed loop, generating an open infinite winding that remains compatible with cosmological expansion while still supporting a stable attention distribution.
+
+4. Preservation of Linear Complexity
+
+Crucially, none of these stabilising operations re-introduces quadratic scaling. The attention operator continues to factorise as a rank-1 update modulated by the fixed geometric gain \(\cos\Psi\). Memory and arithmetic therefore remain strictly linear in sequence length, regardless of whether the discrete directions number 16, 32 or 64. The higher-dimensional folds enrich the internal algebraic texture of the manifold without disturbing the external complexity class that produces the token-capacity expansion.
+
+5. Synthesis
+
+The architecture thus achieves a clean separation of concerns. The fundamental Arcan(\(\tau\)) geometry guarantees temperature cancellation and linear complexity, thereby delivering the dramatic expansion of usable context. The higher-dimensional folds—16D, 32D and 64D—then superimpose successive layers of algebraic regularisation that protect this linear regime against the pathologies native to each Cayley–Dickson stage. The result is a family of attention mechanisms that are simultaneously capacity-expanding and algebraically robust, capable of supporting extreme context lengths while remaining stable across a hierarchy of hypercomplex geometries.
+ 
+Arcan(\(\tau\)) Geometry as the Coherent Response to Cayley–Dickson Relaxation
+
+Joshua Christopher Ryan’s Arcan(\(\tau\)) family supplies a single, continuous geometric mechanism that systematically addresses the progressive algebraic relaxations of the Cayley–Dickson construction while preserving both coherent geometry and usable signal power at every dimension.
+
+In the 16-dimensional sedenion regime, where alternativity fails and zero divisors appear, the Thinnest-Triangle factor \(\cos\Psi\) converts those singular lines into near-zero probability boundaries under the temperature-invariant softmax. The algebraic pathology is thereby absorbed into a well-defined probabilistic geometry without loss of the underlying radial structure.
+
+In the 32-dimensional trigintaduonion regime, power-associativity is lost. The same angular separator \(\Psi\) now functions as a rigid phase-correction vector, re-imposing global coherence across all 32 axes and restoring a unified orbital dynamics.
+
+In the 64-dimensional regime of octonionic chains and pathions, even residual compositional structure collapses. Here the emergent residual \(\delta\) that appears at the seventh multiple of the Arcan generator prevents the orbit from locking into a closed loop. The result is an open, infinite winding that remains compatible with cosmological expansion while continuing to support a stable, temperature-invariant attention distribution.
+
+Across this entire hierarchy the Arcan(\(\tau\)) family never abandons geometric coherence or sacrifices the constant power retention \(\cos^{2}\Psi \approx 0.9776\). By converting each successive algebraic failure into a controlled geometric feature—probabilistic boundary, phase lock, or open winding—the construction ensures that every dimension inherits both a usable attention mechanism and the same dramatic quadratic-to-linear token-capacity expansion. The Cayley–Dickson relaxations are not obstacles to be avoided; they are stages through which the Arcan(\(\tau\)) geometry continues to propagate coherent structure and stable attention.
