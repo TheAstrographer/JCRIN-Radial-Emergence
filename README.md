@@ -1,4 +1,5 @@
 # JCRIN-Radial-Emergence
+
 ==============================================
 JCRIN τ-Temperature Attention Mapping
 Token Capacity Expansion from Quadratic Cost
