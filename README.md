@@ -1,8 +1,8 @@
 # JCRIN-Radial-Emergence
-======================================================================
+==============================================
 JCRIN τ-Temperature Attention Mapping
 Token Capacity Expansion from Quadratic Cost
-======================================================================
+==============================================
 
 1. Classical sequence length (N_classical)
    N_classical = 100,000
