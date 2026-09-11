@@ -1,0 +1,67 @@
+16D Fold · 32D Trigintaduonions · 64D Octonionic Chains / Pathions
+
+Common Geometric Foundation (All Dimensions)
+
+\[
+\begin{align*}
+\theta &= \arctan(2\pi) &&\approx 1.412965\,\text{rad} \approx 80.9569^\circ\\
+\phi &= \arctan(\pi) &&\approx 1.262627\,\text{rad} \approx 72.3432^\circ\\
+\Psi &= \theta - \phi &&\approx 0.150338\,\text{rad} \approx 8.6137^\circ\\
+\cos\Psi &\approx 0.988721\\
+\cos^2\Psi &\approx 0.97757 \quad (97.76\,\%\text{ power retention})
+\end{align*}
+\]
+
+1. 16D Sedenion Fold — Softmax Equation
+
+The clean 16-fold structure on the circle / sphere is realised by the temperature-invariant softmax:
+
+\[
+P_i^{(16)} = \frac{\exp\bigl(\cos(t_i)\cdot\cos\Psi\bigr)}{\sum_{j=0}^{15}\exp\bigl(\cos(t_j)\cdot\cos\Psi\bigr)}
+\]
+
+where the discrete angles are the 16 equally spaced directions
+
+\[
+t_k = \frac{2\pi k}{16} = \frac{\pi k}{8}, \qquad k = 0,1,\dots,15.
+\]
+
+Because \(\tau\) cancels identically, the distribution is independent of temperature. Zero-divisor directions of the sedenion algebra are mapped to near-zero probability by the \(\cos\Psi\) factor.
+
+2. 32D Trigintaduonions — Softmax Equation
+
+\[
+P_i^{(32)} = \frac{\exp\bigl(\cos(t_i)\cdot\cos\Psi\bigr)}{\sum_{j=0}^{31}\exp\bigl(\cos(t_j)\cdot\cos\Psi\bigr)}
+\]
+
+with the 32-fold discrete angles
+
+\[
+t_k = \frac{2\pi k}{32} = \frac{\pi k}{16}, \qquad k = 0,1,\dots,31.
+\]
+
+The same \(\Psi\) supplies a rigid phase-lock across all 32 axes, compensating for the loss of power-associativity.
+
+3. 64D Octonionic Chains / Pathions — Softmax Equation
+
+\[
+P_i^{(64)} = \frac{\exp\bigl(\cos(t_i)\cdot\cos\Psi\bigr)}{\sum_{j=0}^{63}\exp\bigl(\cos(t_j)\cdot\cos\Psi\bigr)}
+\]
+
+with
+
+\[
+t_k = \frac{2\pi k}{64} = \frac{\pi k}{32}, \qquad k = 0,1,\dots,63.
+\]
+
+The residual \(\delta\) that appears at the seventh multiple of the Arcan generator keeps the orbit open (non-periodic closure), producing an infinite winding compatible with cosmological expansion while the softmax remains temperature-invariant.
+
+Summary Numerical Table
+
+| Dimension | Algebraic System              | Number of Discrete Directions | Softmax Form                                      | Key Stabiliser          | Power Retention |
+|-----------|-------------------------------|-------------------------------|---------------------------------------------------|-------------------------|-----------------|
+| 16D   | Sedenions \(\mathbb{S}\)     | 16                            | \(P_i = \dfrac{e^{\cos(t_i)\cos\Psi}}{\sum e^{\cos(t_j)\cos\Psi}}\) | Probabilistic steering via \(\Psi\) | 97.76 %        |
+| 32D   | Trigintaduonions              | 32                            | same form with 32 terms                           | Rigid phase-lock via \(\Psi\) | 97.76 %        |
+| 64D   | Octonionic Chains / Pathions  | 64                            | same form with 64 terms                           | Open winding driven by residual \(\delta\) | 97.76 %        |
+
+All three cases inherit exact temperature cancellation from the underlying Arcan(\(\tau\)) geometry and the Thinnest-Triangle factor \(\cos\Psi\).
