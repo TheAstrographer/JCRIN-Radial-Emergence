@@ -1,0 +1,58 @@
+Quadratic → Linear Token Capacity Calculation  
+Core Equations
+
+1. Classical Quadratic Cost
+\[
+C_{\rm classical}(N) \propto N^{2}
+\]
+
+2. JCRIN Linear Cost
+\[
+C_{\rm JCRIN}(N) \propto N
+\]
+
+3. Equal-Budget Capacity Relation
+Under a fixed compute / energy budget:
+\[
+C_{\rm classical}(N_{\rm classical}) = C_{\rm JCRIN}(N_{\rm JCRIN})
+\]
+
+\[
+N_{\rm classical}^{2} \;\approx\; N_{\rm JCRIN}
+\]
+
+4. Leading-Order Solution
+\[
+N_{\rm JCRIN} \approx \bigl(N_{\rm classical}\bigr)^{2}
+\]
+
+5. Thinnest-Triangle Correction
+\[
+N_{\rm JCRIN}^{\rm corrected} \approx \bigl(N_{\rm classical}\bigr)^{2} \cdot \cos^{2}\Psi
+\]
+
+where
+\[
+\cos^{2}\Psi \approx 0.9775
+\]
+
+6. Explicit Example (\(N_{\rm classical} = 10^{5}\))
+\[
+\begin{align*}
+N_{\rm JCRIN} &\approx (10^{5})^{2} = 10^{10} \\[6pt]
+N_{\rm JCRIN}^{\rm corrected} &\approx 10^{10} \times 0.9775 = 9.775 \times 10^{9}
+\end{align*}
+\]
+
+7. Capacity Multiplier
+\[
+\text{Multiplier} \approx \frac{N_{\rm JCRIN}}{N_{\rm classical}} \approx N_{\rm classical} \cdot \cos^{2}\Psi
+\]
+
+Compact Master Equation
+
+\[
+\boxed{
+N_{\rm JCRIN} \;\approx\; N_{\rm classical}^{2} \cdot \cos^{2}\Psi
+}
+\]
