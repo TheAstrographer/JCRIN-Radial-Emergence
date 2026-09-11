@@ -1,10 +1,10 @@
 # JCRIN-Radial-Emergence
-==============================================
+=======================================
 
 JCRIN τ-Temperature Attention Mapping
 Token Capacity Expansion from Quadratic Cost
 
-==============================================
+=======================================
 
 1. Classical sequence length (N_classical)
    N_classical = 100,000
@@ -31,15 +31,15 @@ Token Capacity Expansion from Quadratic Cost
    JCRIN cost     ∝ N  = 9,775,689,000
    Same budget therefore supports ~N² tokens under JCRIN
 
-==============================================
+=======================================
 
 RESULT
 
-==============================================
+=======================================
 
 100,000  →  JCRIN  ≈  9,775,689,000   (97,757×)
 Additional tokens ≈ 9,775,589,000
 
-==============================================
+=======================================
 
 All Rights Reserved
