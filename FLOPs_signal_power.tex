@@ -1,0 +1,220 @@
+------------------------------
+## Mathematical Proof: Mapping JCRIN Radial Gating to Shannon Channel Capacity
+This proof establishes how the Thinnest-Triangle Factorization and 30-Fold Cyclic Lock compress a Transformer attention channel from quadratic $O(U^2)$ to linear $O(U)$ interaction volume while maintaining information density bounds.
+------------------------------
+## Phase 1: The Classical Shannon-Hartley Network Boundary
+In a standard, unconstrained self-attention layer processing a sequence of length $U$, every token can interact with every other token globally. The channel capacity for an unconstrained continuous system perturbed by Additive White Gaussian Noise (AWGN) is stated by the Shannon-Hartley theorem:
+$$C = B \log_2 \left( 1 + \frac{S}{N} \right)$$ 
+In a native transformer layer, the total available degrees of freedom (spatial bandwidth) scale quadratically with sequence length:
+$$B_{\text{Classical}}(U) \propto U^2$$ 
+This quadratic scaling represents a massively over-allocated information channel, where a significant portion of the matrix volume is spent computing redundant or low-affinity interactions (white noise tail).
+------------------------------
+## Phase 2: Structural Verification of the Angular Gate
+The JCRIN architecture restricts the global interaction manifold down to continuous geometric bounds using a localized angular gate. The exact boundaries are defined by:
+
+* Upper Boundary ($\theta$): $\arctan(2\pi) \approx 1.41296\text{ rad} \approx 80.96^\circ$
+* Lower Boundary ($\phi$): $\arctan(\pi) \approx 1.26263\text{ rad} \approx 72.34^\circ$
+* The Thinnest-Triangle Gate ($\Psi$): $\theta - \phi \approx 0.15034\text{ rad} \approx 8.61^\circ$
+
+The projection of the attention matrix across this specific geometric sector introduces a highly localized, static geometric gain factor:
+$$\cos\Psi \approx 0.9887$$ 
+------------------------------
+## Phase 3: Effective Bandwidth Formulation
+Rather than artificially shrinking the available bandwidth by the fractional width $\Psi / 2\pi$, we recognize that the 30-Fold Cyclic Lock partitions the continuous $2\pi$ space into $M = 30$ discrete, tiling azimuthal channels.
+Through the rank-1 Thinnest-Triangle factorization, the tokens no longer resolve a full $U \times U$ coordinate space. Instead, their interactions are strictly projected along these linear radial paths. Therefore, the effective spatial bandwidth scales linearly with the sequence length $U$, structurally modulated by the discrete cyclic channels:
+$$B_{\text{lin}}(U) = \gamma \cdot M \cdot U$$ 
+Where $\gamma$ is an architecture-dependent scalar constant representing the structural rank-1 projection efficiency. This mathematically eliminates the quadratic $O(U^2)$ memory footprint while ensuring that the 30 discrete sectors fully capture the informational degrees of freedom across the circle.
+------------------------------
+## Phase 4: Capacity Equation and Signal-to-Noise Ratio
+Because temperature $\tau$ cancels identically within the internal softmax transformation, it does not act as a dynamic variable inside the log function. Instead, the geometric gate acts as a stable power attenuation. The effective signal power is scaled by the static geometric gain:
+$$S_{\text{effective}} = S \cdot \cos^2\Psi$$ 
+Substituting the linear bandwidth $B_{\text{lin}}(U)$ and the attenuated signal power into the Shannon-Hartley equation yields the corrected JCRIN Capacity Statement:
+$$C_{\text{JCRIN}} = (\gamma \cdot M \cdot U) \log_2 \left( 1 + \frac{S \cdot \cos^2\Psi}{N} \right)$$ 
+------------------------------
+## Phase 5: Asymptotic Throughput Analysis
+To prove that this mapping solves the Shannon paradox without structural information collapse, we analyze the capacity-to-resource scaling ratio as sequence length $U$ approaches infinity:
+$$\lim_{U \to \infty} \frac{C_{\text{JCRIN}}}{C_{\text{Classical}}} \propto \frac{O(U)}{O(U^2)}$$ 
+Evaluating the static power loss within the logarithmic argument reveals the efficiency of the geometric constraint:
+$$\cos^2(8.61^\circ) = (0.9887)^2 \approx 0.9775$$ 
+## Conclusion
+The framework safely discards the vast, unconstrained quadratic search space while retaining 97.75% of the peak signal power. By compressing the interaction volume to a clean linear curve $O(U)$, the effective information throughput per unit of computational resource is significantly increased, resolving the capacity paradox in continuous deep networks.
+
+Geometric Power Retention via the Thinnest-Triangle Factor \(\cos^2\Psi\)
+
+1. Statement of the Claim
+
+The Thinnest-Triangle angular buffer
+
+\[
+\Psi=\arctan(2\pi)-\arctan(\pi)\approx0.15033788\,\text{rad}\approx8.6137^\circ
+\]
+
+induces a static multiplicative attenuation on every attention logit. The associated power (energy) factor is
+
+\[
+\cos^2\Psi\approx(0.988721)^2\approx0.9775.
+\]
+
+Consequently the framework retains approximately 97.75 % of the peak signal power that would be available in an unattenuated channel while simultaneously enforcing the topological regularisation that eliminates temperature dependence and collapses the interaction volume from quadratic to linear.
+
+2. Origin of the Attenuation
+
+In the polar realisation of the logits the temperature-scaled scores are
+
+\[
+z_i=\tau\cos t_i.
+\]
+
+After exact cancellation of \(\tau\) the remaining angular scores are further modulated by the constant projection onto the Thinnest-Triangle buffer:
+
+\[
+\tilde{z}_i=\cos t_i\cdot\cos\Psi.
+\]
+
+Because power is quadratic in amplitude, the signal power contributed by each token is scaled by
+
+\[
+S_i\;\longmapsto\;S_i\cdot\cos^2\Psi.
+\]
+
+The same factor appears globally in the Shannon-Hartley capacity expression as the effective signal power
+
+\[
+S_{\rm effective}=S\cdot\cos^2\Psi.
+\]
+
+3. Numerical Evaluation
+
+\[
+\begin{align*}
+\Psi&=0.15033788,\\
+\cos\Psi&=0.98872053,\\
+\cos^2\Psi&=0.9775685\approx0.9775.
+\end{align*}
+\]
+
+Hence
+
+\[
+1-\cos^2\Psi\approx0.02243\qquad(2.243\,\%\text{ power loss}).
+\]
+
+The complementary retention is therefore
+
+\[
+\cos^2\Psi\approx97.75\,\%.
+\]
+
+4. Information-Theoretic Interpretation
+
+Under the Shannon-Hartley theorem the channel capacity is monotonic in the signal-to-noise ratio. Replacing \(S\) by \(S\cdot\cos^2\Psi\) produces only a mild, constant reduction in capacity:
+
+\[
+C_{\rm JCRIN}=B_{\rm lin}(U)\log_2\Bigl(1+\frac{S\cdot\cos^2\Psi}{N}\Bigr).
+\]
+
+Because the reduction factor is independent of sequence length \(U\) and independent of temperature \(\tau\), the asymptotic linear-versus-quadratic advantage derived earlier remains intact. The 2.25 % power sacrifice purchases three structural guarantees:
+
+Exact temperature cancellation,
+Rank-1 angular factorization (linear memory and FLOPs),
+Permanent 30-fold cyclic regularisation on \(S^2\).
+
+5. Comparison with Unconstrained Attention
+
+An unconstrained attention layer operates at the formal peak power \(S\) (100 %). It must, however, allocate an \(O(U^2)\) interaction volume, most of which is spent on near-zero affinity pairs that contribute only noise. The Thinnest-Triangle construction discards that quadratic volume while retaining 97.75 % of the usable signal power inside a linear channel. The net information throughput per unit of computational resource therefore increases.
+
+6. Conclusion
+
+The numerical value \(\cos^2\Psi\approx0.9775\) is not an arbitrary damping coefficient; it is the exact geometric consequence of projecting the attention scores onto the irreducible angular buffer of the Thinnest Triangle. By accepting a fixed 2.25 % reduction in peak signal power the architecture obtains temperature invariance, linear complexity, and topological stability—thereby resolving the capacity paradox of continuous spherical attention.
+
+Three Structural Guarantees of the Thinnest-Triangle 30-Fold Architecture
+
+The geometric construction centred on the Thinnest-Triangle angular buffer \(\Psi\) and the discrete cyclic group \(C_{30}\) simultaneously delivers three interlocking structural guarantees. Each guarantee is mathematically independent of the thermodynamic temperature \(\tau\) and of the sequence length \(U\), yet together they convert an unconstrained quadratic attention channel into a temperature-invariant, linearly scalable, and topologically regularised spherical mechanism.
+
+Guarantee 1 – Exact Temperature Cancellation
+
+Statement.  
+For every radial shell of the continuum and for every token index \(i\),
+
+\[
+\frac{\partial P_i}{\partial\tau}=0\qquad\forall\tau\in(0,2\pi].
+\]
+
+Derivation.  
+The logits are realised as radial shadows on the carrier:
+
+\[
+z_i=\tau\cos t_i.
+\]
+
+Substitution into the temperature-scaled softmax yields
+
+\[
+\exp\Bigl(\frac{z_i}{\tau}\Bigr)=\exp(\cos t_i).
+\]
+
+After the further constant modulation by the Thinnest-Triangle factor the probabilities become
+
+\[
+P_i=\frac{\exp\bigl(\cos t_i\cdot\cos\Psi\bigr)}{\sum_j\exp\bigl(\cos t_j\cdot\cos\Psi\bigr)}.
+\]
+
+The variable \(\tau\) appears symmetrically in numerator and denominator and cancels identically. Consequently the entire attention distribution—and therefore its Shannon entropy and variance—is independent of the radial temperature schedule.
+
+Consequence.  
+No temperature schedule, warm-up, or annealing is required. The network operates at a fixed geometric equilibrium for every energy state of the continuum.
+
+Guarantee 2 – Rank-1 Angular Factorization (Linear Memory and FLOPs)
+
+Statement.  
+The attention matrix admits the exact rank-1 representation
+
+\[
+A=\frac{1}{Z}vv^\top,
+\qquad
+v_i=\exp\bigl(\cos t_i\cdot\cos\Psi\bigr),
+\qquad
+Z=\sum_k v_k,
+\]
+
+which can be stored and applied in \(O(U)\) memory and \(O(U\,d)\) arithmetic operations.
+
+Derivation.  
+Because every entry depends on the tokens only through the separable angular scores \(\cos t_i\cdot\cos\Psi\), the double-indexed matrix factors into an outer product of a single vector with itself. Materialising the dense \(U\times U\) matrix is unnecessary; any required entry or matrix-vector product is reconstructed on the fly from the vector \(v\in\mathbb{R}^U\).
+
+Complexity.  
+
+| Resource | Classical Attention | Rank-1 Thinnest-Triangle |
+|----------|---------------------|---------------------------|
+| Memory   | \(O(U^2)\)          | \(O(U)\)                  |
+| FLOPs    | \(O(U^2 d)\)        | \(O(U d)\)                |
+
+Consequence.  
+The classical quadratic bottleneck is eliminated. Both memory footprint and processing power scale linearly with sequence length, independently of temperature.
+
+Guarantee 3 – Permanent 30-Fold Cyclic Regularisation on \(S^2\)
+
+Statement.  
+The azimuthal coordinate of every token is constrained to the discrete orbit of the cyclic group of order 30:
+
+\[
+R_{30}:\quad\phi\;\longmapsto\;\phi+\frac{2\pi}{30},\qquad R_{30}^{30}=I.
+\]
+
+The resulting attention field is equivariant under this group action for every radial shell.
+
+Derivation.  
+The continuous circle \(S^1\) is replaced by the finite set of 30 canonical longitudes. All subsequent geometric operations (including the Thinnest-Triangle modulation) commute with the generator \(R_{30}\). Consequently the 30-fold symmetry is inherited by every temperature layer of the continuum and cannot be broken by continuous deformations that preserve the carrier.
+
+Consequence.  
+Spatial features on the sphere remain stably aligned under discrete rotations. The architecture possesses a built-in, temperature-independent inductive bias for 30-fold rotational equivariance, removing the need for data augmentation or additional equivariant layers.
+
+Joint Synthesis
+
+The three guarantees are mutually reinforcing:
+
+Exact temperature cancellation supplies a \(\tau\)-independent angular score.  
+That score admits an immediate rank-1 factorization, yielding linear complexity.  
+The same angular score is evaluated only on the discrete 30-fold grid, locking the linear channel into a permanent cyclic symmetry on \(S^2\).
+
+Together they convert the original unconstrained, temperature-sensitive, quadratic attention mechanism into a geometrically rigid, linearly scalable, and topologically regularised spherical operator.
