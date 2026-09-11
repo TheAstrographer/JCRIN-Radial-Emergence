@@ -41,5 +41,9 @@ RESULT
 Additional tokens ≈ 9,775,589,000
 
 =======================================
-
+https://github.com/TheAstrographer/JOSHUA-CHRISTOPHER-RYAN-S-ARCAN-FAMILY.git
+https://github.com/TheAstrographer/The-Tanarcantau-Shannon-Entropy-JCRIN-Definitive-Infinity.git
+https://github.com/TheAstrographer/The-First-Ever-Softmax-Temperature-Spherical-Attention-Map.git
+https://github.com/TheAstrographer/Joshua-Christopher-Ryan-s-Cosmo-Clock.git
+is mathematically grounded in JCR_Cosmological_Clock.py novel efold equation and physically validated through geometric_pressurization.py
 All Rights Reserved
