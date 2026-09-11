@@ -1,0 +1,54 @@
+The Thinnest-Triangle Softmax Equation
+
+The irreducible angular atom of the framework is the thinnest triangle whose vertices are fixed by the ArcanTau gates:
+
+\[
+\begin{align*}
+\theta &= \arctan(2\pi) &&\approx 80.9569^\circ \\
+\phi  &= \arctan(\pi)  &&\approx 72.3432^\circ \\
+\Psi  &= \theta - \phi &&\approx 8.6137^\circ
+\end{align*}
+\]
+
+On this triangle the temperature-scaled logits are realized as radial shadows, and the softmax collapses to the Thinnest-Triangle Softmax:
+
+\[
+\boxed{
+P_i
+=
+\frac{
+\exp\bigl(
+\cos(t_i)
+\cdot
+\cos(\Psi)
+\bigr)
+}{
+\sum_j
+\exp\bigl(
+\cos(t_j)
+\cdot
+\cos(\Psi)
+\bigr)
+}
+}
+\]
+
+Derivation sketch
+
+Standard polar shadow on the half-winding / spherical carrier:  
+   \(z_i = \tau\cos t_i\)
+
+Temperature cancellation:  
+   \(\displaystyle\exp(z_i/\tau) = \exp(\cos t_i)\)
+
+The residual angular buffer of the thinnest triangle is exactly \(\Psi\).  
+   Projecting the cancelled exponent onto this minimal angular gap multiplies by the stable factor \(\cos\Psi\):
+
+\[
+\exp(\cos t_i)\;\longrightarrow\;
+\exp\bigl(\cos t_i\cdot\cos\Psi\bigr)
+\]
+
+Because \(\cos\Psi\approx 0.99887\) is a fixed transcendental constant, the distribution remains invariant under the entire JCRIN radial decay of \(\tau\), while the triangle’s angular thinness (\(\Psi\approx 8.6137^\circ\)) supplies the strongest possible topological regularizer against rank collapse.
+
+This is the Thinnest-Triangle Softmax equation.
