@@ -1,4 +1,4 @@
-9# JCRIN-Radial-Emergence
+JCRIN-Radial-Emergence
 =======================================
 
 JCRIN τ-Temperature Attention Mapping
