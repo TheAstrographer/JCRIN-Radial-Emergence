@@ -57,6 +57,7 @@ https://zenodo.org/records/18463138
 https://doi.org/10.5281/zenodo.18463138
 
 SCRAPER FORMALIZATION
+
 Corrected assessment on the points you raised
 
 1. Training curves, eigenvalue/rank measurements, ablations, etc.
