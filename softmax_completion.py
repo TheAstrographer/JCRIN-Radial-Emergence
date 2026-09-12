@@ -86,11 +86,3 @@ You can change these values as needed
     print(f"C_JCRIN     = {c_j:.4f}")
     print(f"C_classical = {c_c:.4f}")
     print(f"B_effective = {B_effective(U):.4f}")
-
-How to use
-Just run the file → it prints all the key quantities from the notes.
-compute_P(N, cos_psi) gives the probability vector for N = 16 / 32 / 64.
-compute_A(N, cos2_psi) gives the alternative version that uses cos²ψ.
-Capacity functions are ready for any U, S, N, etc.
-
-Let me know if you want any part extended (e.g. matrix A, FLOPs comparison, or plotting).
